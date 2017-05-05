@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+  <title>H5</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-touch-fullscreen" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+
+  <link href="css/css.css" rel="stylesheet">
+  <link href="css/animate.css" rel="stylesheet">
+  <link href="css/swiper.css" rel="stylesheet">
+  <script type="text/javascript" src="js/zepto.min.js"></script>
+  <script type="text/javascript" src="js/swiper.jquery.min.js"></script>
+</head>
+<body>
+<!--进度条-->
+  <div class="wrap">
+    <div class="circle">
+      <div class="percent left"></div>
+      <div class="percent right wth0"></div>
+    </div>
+    <img class="image" src="image/loading.jpg">
+    <div class="num"><span>0</span>%</div>
+  </div>
+
+<!--<div class="swipContent">-->
+  <!-- Slider main container -->
+  <div class="swiper-container" style="display: none">
+    <!-- Additional required wrapper -->
+    <div class="swiper-wrapper">
+      <!-- Slides第一张 -->
+      <div class="swiper-slide" style="background-color: #c35655">
+        <!--<div class="content" style="background-color: #c35655">-->
+        <div class="circle_p1">
+        <div class="circle_min_p1">
+        </div>
+        </div>
+
+        <div class="img_wrap">
+          <img class="image1_1" src="image/p1_1.jpg">
+          <img class="image1_2" src="image/p1_2.jpg">
+          <img class="image1_3" src="image/p1_3.jpg">
+          <img class="image1_4" src="image/p1_4.jpg">
+          <img class="image1_5" src="image/p1_5.png">
+          <img class="image1_6" src="image/p1_6_1.png">
+          <img class="arrow" src="image/arrow.png">
+        </div>
+        <!--</div>-->
+      </div>
+      <!--第二张-->
+      <div class="swiper-slide" style="background-color: #65aadd">
+        <img class="touxiang" src="image/touxiang.png">
+        <p class="name">马晓菲</p>
+        <img class="image2_1" src="image/p2_1.png">
+
+        <img class="image2_5" src="image/p2_5.jpg">
+        <img class="image2_4" src="image/p2_4.jpg">
+        <div>
+          <div class="line1">
+              <span><img class="image2_3" src="image/p2_3.png"></span>
+              <span class="font">本科：电子科技大学 软件工程</span>
+            </div>
+          <div class="line2">
+              <span><img class="image2_3" src="image/p2_2.png"></span>
+              <span class="font">硕士：电子科技大学 软件工程</span>
+          </div>
+        </div>
+
+        <img class="image2_7" src="image/p2_7.jpg">
+        <img class="image2_6" src="image/p2_6.png">
+        <div>
+          <div class="line3">
+            <span><img class="image2_8" src="image/p2_8.png"></span>
+            <span><img class="image2_10" src="image/p2_10.png"></span>
+            <span><img class="image2_11" src="image/p2_11.png"></span>
+          </div>
+        </div>
+        <img class="arrow2" src="image/arrow.png">
+      </div>
+
+
+      <div class="swiper-slide" style="background-color: #7ba1a8">
+        <div class="touxiang_div" style="background-color: #eacdd1"></div>
+      </div>
+      <div class="swiper-slide" style="background-color: #6493af">
+        s3
+      </div>
+      <div class="swiper-slide" style="background-color: #7ba1a8">
+        s3
+      </div>
+
+    </div>
+
+  </div>
+<!--</div>-->
+
+<!--第一张-->
+<!--<div class="content" style="background-color: #c35655">-->
+  <!--&lt;!&ndash;<div id="content" class="content" style="background-color: #c35655"></div>&ndash;&gt;-->
+  <!--<div class="circle_p1">-->
+    <!--<div class="circle_min_p1">-->
+    <!--</div>-->
+  <!--</div>-->
+  <!--<div class="img_wrap">-->
+    <!--<img class="image1_1" src="image/p1_1.jpg">-->
+    <!--<img class="image1_2" src="image/p1_2.jpg">-->
+    <!--<img class="image1_3" src="image/p1_3.jpg">-->
+    <!--<img class="image1_4" src="image/p1_4.jpg">-->
+    <!--<img class="image1_5" src="image/p1_5.png">-->
+    <!--<img class="image1_6" src="image/p1_6_1.png">-->
+  <!--</div>-->
+<!--</div>-->
+
+<script type="text/javascript">
+
+
+  //进度条
+  var percent=0;
+  var loadingInitial=setInterval(function(){
+    if(percent>50){
+      clearInterval(loadingInitial);
+      loadingfaster();
+    }
+    $('.left').css("-webkit-transform","rotate("+(18/5)*percent+"deg)");
+    $('.num>span').text(percent);
+    percent++;
+  },1);
+
+  var loadingfaster=function(){
+    var secondLoad = setInterval(function(){
+      if(percent==100){
+        clearInterval(secondLoad);
+        loadToFirstTrans();
+      }else if(percent>50){
+        $('.circle').addClass('clip-auto');
+        $('.right').removeClass('wth0');
+      }
+      $('.left').css("-webkit-transform","rotate("+(18/5)*percent+"deg)");
+      $('.num>span').text(percent);
+      percent++;
+    },1);
+  };
+
+  //进度条转场至第一张
+  function loadToFirstTrans(){
+    $(".wrap").addClass("bounceIn animated");
+    $(".wrap").one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend',function(){
+      $(".wrap").addClass("fadeOutDown animated");
+    });
+
+    $(".wrap").one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend',function(){
+      //隐藏进度条
+      $(".wrap").hide();
+      //初始化翻页
+      $(".swiper-container").show();
+      var mySwiper = new Swiper ('.swiper-container', {
+        // Optional parameters
+        direction: 'vertical',
+        loop: false,
+        speed: 400,
+        spaceBetween: 100,
+        onSlideChangeStart: function(swiper){
+//          alert(swiper.activeIndex);
+          if(swiper.activeIndex==1){
+            loadToSecondTrans();
+          }
+        }
+      });
+      //显示圆圈
+      $(".swiper-container").show();
+      $(".swiper-container").addClass("fadeIn animated");
+      $(".arrow").addClass("fadeInUp animated infinite")
+    });
+//显示第一页图片
+    $(".swiper-container").one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend',function(){
+
+      $(".circle_p1").show();
+      $(".circle_min_p1").show();
+      $(".circle_min_p1").addClass("zoomInUp animated");
+      $(".circle_p1").addClass("zoomInUp animated");
+    });
+    $(".circle_p1").one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend',function(){
+      $(".image1_1").show();
+      $(".image1_1").addClass("wobble animated");
+
+      $(".image1_2").show();
+      $(".image1_2").addClass("zoomInRight animated");
+
+      $(".image1_3").show();
+      $(".image1_3").addClass("bounceInDown animated");
+      setTimeout(function(){
+        $(".image1_3").removeClass("bounceInDown animated");
+      },1000);
+
+      $(".image1_4").show();
+      $(".image1_4").addClass("fadeIn animated");
+
+      $(".image1_5").show();
+      $(".image1_5").addClass("zoomInUp animated");
+
+      $(".image1_6").show();
+      $(".image1_6").addClass("pulse animated");
+    });
+
+    //进度条转场至第2张
+    function loadToSecondTrans(){
+      $(".arrow2").addClass("fadeInUp animated infinite");
+
+      $(".touxiang").show();
+      $(".touxiang").addClass("fadeInUpBig animated");
+      $(".name").show();
+      $(".name").addClass("flipInX animated");
+      $(".image2_1").show();
+      $(".image2_1").addClass("flipInX animated");
+
+      $(".image2_1").one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend',function(){
+        $(".image2_5").show();
+        $(".image2_5").addClass("lightSpeedIn animated");
+        $(".image2_4").show();
+        $(".image2_4").addClass("lightSpeedIn animated");
+
+        $(".image2_6").show();
+        $(".image2_6").addClass("lightSpeedIn animated");
+        $(".image2_7").show();
+        $(".image2_7").addClass("lightSpeedIn animated");
+      });
+
+      $(".image2_4").one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend',function(){
+        $(".image2_3").show();
+        $(".image2_3").addClass("flipInY animated");
+        $(".font").show();
+        $(".font").addClass("flipInY animated");
+
+        $(".image2_8").show();
+        $(".image2_8").addClass("flipInY animated");
+        $(".image2_10").show();
+        $(".image2_10").addClass("flipInY animated");
+        $(".image2_11").show();
+        $(".image2_11").addClass("flipInY animated");
+      });
+
+
+    }
+
+  }
+
+</script>
+
+</body>
+</html>
